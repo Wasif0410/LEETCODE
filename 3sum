@@ -23,7 +23,7 @@ def numbersort():
     origlist = []    #original list
     newlist =[]   #a list of the original list
 
-    #if you don't understand this loop refer to the something.txt in files
+    #if you don't understand this loop refer to the loop example explanation in files
     #loop which which creates every possibls combination of numbers
     for i in range(0,len(nums),1):
         for j in range(i+1,len(nums),1):
