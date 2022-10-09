@@ -1,0 +1,79 @@
+'''
+Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+Notice that the solution set must not contain duplicate triplets.
+
+EXAMPLE:
+    Input: nums = [-1,0,1,2,-1,-4]
+    Output: [[-1,-1,2],[-1,0,1]]
+Explanation: 
+    nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+    nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+    nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+    The distinct triplets are [-1,0,1] and [-1,-1,2].
+
+Notice that the order of the output and the order of the triplets does not matter.
+'''
+
+def numbersort():
+    
+    #test list value
+    nums =[0,0,0,0]
+
+    #initalize lists
+    origlist = []    #original list
+    newlist =[]   #a list of the original list
+
+    #if you don't understand this loop refer to the something.txt in files
+    #loop which which creates every possibls combination of numbers
+    for i in range(0,len(nums),1):
+        for j in range(i+1,len(nums),1):
+            for k in range(j+1, len(nums),1):
+                
+                #if a combination equates to 0 add it to list
+                if nums[i] + nums[j] + nums[k] == 0:
+                    origlist.append(nums[i])
+                    origlist.append(nums[j])
+                    origlist.append(nums[k])
+                    origlist.sort()  #sort list
+                    newlist.append(origlist)   #put original list into new list
+                    origlist=[]  #set orginal list to empty
+
+    #pass variable
+    dupchecker(newlist)
+
+   
+def dupchecker(newlist):
+
+    for t in range(len(newlist)):
+        #if a value in the newlist repeats itself run indented for loop
+        if newlist.count(newlist[t]) >1:
+
+            #run through loop and replace duplicate values with "null"
+            for y in range(t+1,len(newlist),1):
+                if newlist[t] == newlist[y]:       
+                    newlist[y] = "null"
+    
+    #pass variable
+    dupremover(newlist)
+
+
+def dupremover(newlist):
+
+    origlength=len(newlist)
+    temp = 0
+
+    #while loop which removes "null" from the list
+    while temp < origlength:
+
+        #if "null" is in newlist remove it
+        if "null" in newlist:
+            newlist.remove("null")
+            
+        temp+=1 #add 1 to temp so the while loop don't run forever
+
+    print(newlist)  #output value to user
+
+
+if __name__ == "__main__":
+    
+    numbersort()    #call function
