@@ -1,0 +1,47 @@
+'''
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
+
+EXAMPLE:
+    Input: nums = [2,7,11,15], target = 9
+    Output: [0,1]
+    Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+'''
+
+
+def sumcheck():
+
+    #Example test values
+    nums = [1,2,3,0,5,3,6,1,2,3]
+    target = 5
+
+
+    checker=[]     #list'
+    checker=[]     
+    temp=False     #checker to see if our conditions are met
+
+    #for loop which runs through the numbers, starting from index i
+    for i in range (len(nums)):
+
+        #if our temp variable is true that means condition is met and loop can stop
+        if temp ==True:
+            break
+        
+        #second foor loop which compares the first number with its following numbers
+        for j in range(i+1,len(nums),1):
+
+            #if there are 2 number combinations that are added up and equal to target
+            if (nums[i] + nums[j] == target):
+                #add the index number of the 2 elements to the list
+                checker.append(i)   
+                checker.append(j)
+                temp = True  #set temp to true, meaning conditions have been met
+                break   #stop the j loop here after condition is met
+            
+    
+    print("Therfore at index",checker, "the value is equal to", target)  #output to user
+
+if __name__ == "__main__":
+    
+ sumcheck()    #call function
